@@ -1,0 +1,55 @@
+#include "so_long.h"
+
+static void	is_valid_map(t_map *map)
+{
+	size_t	i;
+
+	map->size_x = ft_strlen(map->board[0]);
+	map->size_y = arr_len(map->board);
+	i = 0;
+	while (map->board[i])
+	{
+		if (i == 0 || i == map->size_y - 1)
+			check_tb_border(map->board[i]);
+		if (map->size_x != ft_strlen(map->board[i]))
+			error_handler("Invalid map shape", "is_valid_map", EIO);
+		check_map_content(map->board[i], map);
+		i++;
+	}
+	if (!map->collectible || !map->exit || !map->player)
+		error_handler("Insufficient map content", "check_map_content", EIO);
+}
+
+static void	cache_map(int fd, t_map *map)
+{
+	char	*line;
+	t_list	*head;
+	t_list	*lst;
+
+	head = NULL;
+	while (get_next_line(fd, &line) > 0)
+	{
+		if (errno)
+			error_handler("Read error", "cache_map", EIO);
+		lst = ft_lstnew(line);
+		if (!lst->content)
+			error_handler("Str duplicate error", "cache_map", EIO);
+		ft_lstadd_back(&head, lst);
+	}
+	map->board = (char **)ft_lst_to_arr(head);
+	ft_lstclear(&head, NULL);
+}
+
+void	parse_map(char *filename, t_map *map)
+{
+	int		fd;
+
+	check_valid_ext(filename, "ber");
+	*map = (t_map){.board = NULL};
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		error_handler("Open file failure", "is_valid_map", 0);
+	cache_map(fd, map);
+	close(fd);
+	is_valid_map(map);
+}
