@@ -46,6 +46,8 @@ $(NAME) : $(OBJS) $(LIBFT) $(MLX)
 	@echo "Your display variable is $$DISPLAY"
 	@$(CC) $(CFLAGS) -o $@ $^ $(MLXFLAGS)
 
+bonus : ${NAME}
+
 clean :
 	@echo "Cleaning all .o files.."
 	@make -C mlx_linux clean

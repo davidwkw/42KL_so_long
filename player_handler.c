@@ -2,31 +2,10 @@
 
 void	*select_idle_img(t_vars *mlx, unsigned int state)
 {
-	const void	*img[] = {
-		mlx->img_cache.player.player_idle_0.addr,
-		mlx->img_cache.player.player_idle_1.addr,
-		mlx->img_cache.player.player_idle_2.addr,
-		mlx->img_cache.player.player_idle_3.addr,
-		mlx->img_cache.player.player_idle_4.addr,
-		mlx->img_cache.player.player_idle_5.addr,
-		mlx->img_cache.player.player_idle_6.addr,
-		mlx->img_cache.player.player_idle_7.addr
-	};
-	const void	*m_img[] = {
-		mlx->img_cache.player.m_player_idle_0.addr,
-		mlx->img_cache.player.m_player_idle_1.addr,
-		mlx->img_cache.player.m_player_idle_2.addr,
-		mlx->img_cache.player.m_player_idle_3.addr,
-		mlx->img_cache.player.m_player_idle_4.addr,
-		mlx->img_cache.player.m_player_idle_5.addr,
-		mlx->img_cache.player.m_player_idle_6.addr,
-		mlx->img_cache.player.m_player_idle_7.addr
-	};
-
 	if (mlx->player_state.direction == LEFT)
-		return ((void *)m_img[state % 8]);
+		return ((void *)mlx->img_cache.player.m_player_idle[state % 8].addr);
 	else
-		return ((void *)img[state % 8]);
+		return ((void *)mlx->img_cache.player.player_idle[state % 8].addr);
 }
 
 void	render_idle_player(t_vars *mlx, int x, int y, int fps)
