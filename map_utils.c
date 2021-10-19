@@ -6,7 +6,7 @@ static void	check_side_border(char c)
 		error_handler("Vertical border not intact", "check_side_border", EIO);
 }
 
-void	parse_map_items(char c, t_map *map, int x)
+void	parse_map_items(char c, t_map *map, int x, int y)
 {
 	if (c == 'P')
 	{
@@ -14,7 +14,7 @@ void	parse_map_items(char c, t_map *map, int x)
 		if (map->player > 1)
 			error_handler("More than 1 player", "parse_map_items", EIO);
 		map->player_x = x;
-		map->player_y = map->size_y;
+		map->player_y = y;
 	}
 	else if (c == 'C')
 		map->collectible++;
@@ -35,19 +35,19 @@ void check_tb_border(char *line)
 	}
 }
 
-void	check_map_content(char *line, t_map *map)
+void	check_map_content(char *line, t_map *map, size_t y)
 {
-	size_t	i;
+	size_t	x;
 
-	i = 0;
-	while (line[i])
+	x = 0;
+	while (line[x])
 	{
-		if (i == 0 || i == (ft_strlen(line) - 1))
-			check_side_border(line[i]);
-		else if (ft_strchr("01CEP", line[i]))
-			parse_map_items(line[i], map, i);
+		if (x == 0 || x == (ft_strlen(line) - 1))
+			check_side_border(line[x]);
+		else if (ft_strchr("01CEP", line[x]))
+			parse_map_items(line[x], map, x, y);
 		else
 			error_handler("Invalid map item", "check_map_content", EIO);
-		i++;
+		x++;
 	}
 }

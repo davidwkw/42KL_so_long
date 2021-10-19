@@ -2,19 +2,19 @@
 
 static void	is_valid_map(t_map *map)
 {
-	size_t	i;
+	size_t	y;
 
 	map->size_x = ft_strlen(map->board[0]);
 	map->size_y = arr_len(map->board);
-	i = 0;
-	while (map->board[i])
+	y = 0;
+	while (map->board[y])
 	{
-		if (i == 0 || i == map->size_y - 1)
-			check_tb_border(map->board[i]);
-		if (map->size_x != ft_strlen(map->board[i]))
+		if (y == 0 || y == map->size_y - 1)
+			check_tb_border(map->board[y]);
+		if (map->size_x != ft_strlen(map->board[y]))
 			error_handler("Invalid map shape", "is_valid_map", EIO);
-		check_map_content(map->board[i], map);
-		i++;
+		check_map_content(map->board[y], map, y);
+		y++;
 	}
 	if (!map->collectible || !map->exit || !map->player)
 		error_handler("Insufficient map content", "check_map_content", EIO);

@@ -6,7 +6,11 @@ SRCS =	main.c \
 		mlx_handler.c \
 		image_handler.c \
 		utils.c \
-		render_map.c \
+		render_utils.c \
+		cache_utils.c \
+		player_cache_handler.c \
+		static_cache_handler.c \
+		player_handler.c \
 
 OBJS = $(SRCS:.c=.o)
 
