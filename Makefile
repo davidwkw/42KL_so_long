@@ -4,13 +4,15 @@ SRCS =	main.c \
 		file_validator.c \
 		error_handler.c \
 		mlx_handler.c \
-		image_handler.c \
+		initializers.c \
 		utils.c \
 		render_utils.c \
 		cache_utils.c \
 		player_cache_handler.c \
 		static_cache_handler.c \
 		player_handler.c \
+		key_handler.c \
+		image_selector.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -38,6 +38,7 @@ static void	cache_map(int fd, t_map *map)
 	}
 	map->board = (char **)ft_lst_to_arr(head);
 	ft_lstclear(&head, NULL);
+	free(line);
 }
 
 void	parse_map(char *filename, t_map *map)

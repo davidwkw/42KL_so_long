@@ -6,6 +6,8 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
+# include <stdlib.h>
+# include <sys/time.h>
 # include "./mlx_linux/mlx.h"
 # include "./libft/libft.h"
 
@@ -15,6 +17,9 @@
 # define FPS 30
 # define IDLE_FRAMES 8
 # define RUN_FRAMES 10
+# define MAX_WIN_HEIGHT 760
+# define MAX_WIN_WIDTH 1900
+# define ANIM_TRANSITION 240
 
 typedef struct	s_data
 {
@@ -35,14 +40,6 @@ typedef struct	s_player_img
 	t_data	m_player_run[RUN_FRAMES];
 }	t_player_img;
 
-typedef struct	s_player_state
-{
-	int				state;
-	unsigned int	direction : 1;
-	int				x;
-	int				y;
-}	t_player_state;
-
 typedef struct	s_imgs 
 {
 	t_data			bg;
@@ -53,17 +50,29 @@ typedef struct	s_imgs
 	t_data			static_assets;
 }	t_imgs;
 
+typedef struct	s_coords
+{
+	int	x;
+	int y;
+}	t_coords;
+
+typedef struct	s_player_state
+{
+	int				state;
+	unsigned int	direction : 1;
+	t_coords		coords;
+}	t_player_state;
+
 typedef struct	s_map
 {
-	char	**board;
-	int		steps;
-	size_t	size_x;
-	size_t	size_y;
-	int		collectible;
-	int		player;
-	int		player_x;
-	int		player_y;
-	int		exit;
+	char		**board;
+	int			steps;
+	size_t		size_x;
+	size_t		size_y;
+	int			collectible;
+	int			player;
+	t_coords	player_coords;
+	int			exit;
 }	t_map;
 
 typedef struct	s_vars
@@ -75,31 +84,62 @@ typedef struct	s_vars
 	t_imgs			img_cache;
 	t_player_state	player_state;
 	t_map			*map;
+	struct timeval	last_move_time;
+	t_coords		cam;
+	unsigned int	total_steps;
 }	t_vars;
 
+// error_handler.c
 void	error_handler(char *msg, char *func, int err_no);
 
+//map_utils.c
 void	check_tb_border(char *line);
 void	check_map_content(char *line, t_map *map, size_t y);
 
+// file_validator.c
 void	check_valid_ext(char *filename, char *ext_to_check);
 void	parse_map(char *filename, t_map *map);
 
+// initializers.c
 void	init_images(t_vars *mlx);
 void	init_player_state(t_vars *mlx);
-void	mlx_handler(t_map *map);
-int		render(t_vars *mlx);
-void	render_bg(t_vars *mlx, t_data *img);
-void	render_idle_player(t_vars *mlx, int x, int y, int fps);
-void	render_collectible();
 
+// mlx_handler.c
+void	mlx_handler(t_map *map);
+
+// render_utils.c
+void	render_bg(t_vars *mlx, t_data *img);
+int		render(t_vars *mlx);
+
+// player_handler.c
+void	render_idle_player(t_vars *mlx, int fps);
+void	render_run_player(t_vars *mlx, int fps);
+
+// dynamic_asset_handler.c
+void	render_collectibles(t_vars *mlx);
+
+// static_cache_handler.c
 void	cache_static_assets(t_vars *mlx);
+void	paint_tile(t_data *img, int x, int y, t_data *asset);
+
+// player_cache_handler.c
 void	cache_idle(t_vars *mlx);
 void	cache_run(t_vars *mlx);
 
+// cache_utils.c
 void	cache_image(void *mlx, t_data *img, char *path);
 void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror);
 
-int		arr_len(char **arr);
+// key_handler.c
+int	key_handler(int key, t_vars *mlx);
+
+// utils.c
+int	arr_len(char **arr);
+int	exit_program(t_vars *mlx);
+int	modulate_fps(int fps);
+
+// image_selector.c
+void	*select_idle_img(t_vars *mlx, unsigned int state);
+void	*select_run_img(t_vars *mlx, unsigned int state);
 
 #endif

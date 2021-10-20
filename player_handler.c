@@ -1,27 +1,29 @@
 #include "so_long.h"
 
-void	*select_idle_img(t_vars *mlx, unsigned int state)
-{
-	if (mlx->player_state.direction == LEFT)
-		return ((void *)mlx->img_cache.player.m_player_idle[state % 8].addr);
-	else
-		return ((void *)mlx->img_cache.player.player_idle[state % 8].addr);
-}
-
-void	render_idle_player(t_vars *mlx, int x, int y, int fps)
+void	render_run_player(t_vars *mlx, int fps)
 {
 	unsigned int	state;
+	t_player_img 	*player;
+	unsigned int	frames;
 
-	state = mlx->player_state.state / (fps / 8);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, select_idle_img(mlx, state), x, y);
-	if (state == 8)
+	player = &mlx->img_cache.player;
+	frames = sizeof(player->player_run) / sizeof(*player->player_run);
+	state = mlx->player_state.state / (fps / frames);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, select_run_img(mlx, state % frames), mlx->player_state.coords.x, mlx->player_state.coords.y);
+	if (state == frames)
 		mlx->player_state.state = 0;
 }
 
-void	init_player_state(t_vars *mlx)
+void	render_idle_player(t_vars *mlx, int fps)
 {
-	mlx->player_state.state = 0;
-	mlx->player_state.x = mlx->map->player_x * STATIC_OFFSET;
-	mlx->player_state.y = mlx->map->player_y * STATIC_OFFSET;
-	mlx->player_state.direction = RIGHT;
+	unsigned int	state;
+	t_player_img 	*player;
+	unsigned int	frames;
+
+	player = &mlx->img_cache.player;
+	frames = sizeof(player->player_idle) / sizeof(*player->player_idle);
+	state = mlx->player_state.state / (fps / frames);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, select_idle_img(mlx, state % frames), mlx->player_state.coords.x, mlx->player_state.coords.y);
+	if (state == frames)
+		mlx->player_state.state = 0;
 }

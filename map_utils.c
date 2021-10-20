@@ -13,8 +13,8 @@ void	parse_map_items(char c, t_map *map, int x, int y)
 		map->player++;
 		if (map->player > 1)
 			error_handler("More than 1 player", "parse_map_items", EIO);
-		map->player_x = x;
-		map->player_y = y;
+		map->player_coords.x = x;
+		map->player_coords.y = y;
 	}
 	else if (c == 'C')
 		map->collectible++;

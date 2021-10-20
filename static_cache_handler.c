@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-static void	paint_tile(t_data *img, int x, int y, t_data *asset)
+void	paint_tile(t_data *img, int x, int y, t_data *asset)
 {
 	int w;
 	int	h;
@@ -25,12 +25,17 @@ static t_data	*get_static_asset(t_vars *mlx, char c)
 	if (c == '1')
 	{
 		render_bg(mlx, &mlx->img_cache.wall);
-		return &mlx->img_cache.wall;
+		return (&mlx->img_cache.wall);
 	}
 	else if (c == 'E')
 	{
 		render_bg(mlx, &mlx->img_cache.exit);
-		return &mlx->img_cache.exit;
+		return (&mlx->img_cache.exit);
+	}
+	else if (c == 'C')
+	{
+		render_bg(mlx, &mlx->img_cache.coll);
+		return (&mlx->img_cache.coll);
 	}
 	else
 		return &mlx->img_cache.bg;

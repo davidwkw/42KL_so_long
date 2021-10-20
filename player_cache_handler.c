@@ -5,8 +5,11 @@ static void mirror_img(t_vars *mlx, t_data player[], t_data m_player[], int num)
 	int	i;
 
 	i = 0;
-	while (++i < num)
+	while (i < num)
+	{
 		cache_mirror_image(mlx->mlx, &player[i], &m_player[i]);
+		i++;
+	}
 }
 
 void	cache_idle(t_vars *mlx)
@@ -33,7 +36,7 @@ void	cache_run(t_vars *mlx)
 	unsigned int	frames;
 
 	player = &mlx->img_cache.player;
-	frames = sizeof(player->player_idle) / sizeof(*player->player_idle);
+	frames = sizeof(player->player_run) / sizeof(*player->player_run);
 	cache_image(mlx->mlx, &player->player_run[0], "assets/run/hero_run_0.xpm");
 	cache_image(mlx->mlx, &player->player_run[1], "assets/run/hero_run_1.xpm");
 	cache_image(mlx->mlx, &player->player_run[2], "assets/run/hero_run_2.xpm");
