@@ -13,6 +13,8 @@ SRCS =	main.c \
 		player_handler.c \
 		key_handler.c \
 		image_selector.c \
+		offset_handler.c \
+		render.c \
 
 OBJS = $(SRCS:.c=.o)
 

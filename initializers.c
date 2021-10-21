@@ -21,5 +21,5 @@ void	init_images(t_vars *mlx)
 	cache_image(mlx->mlx, &mlx->img_cache.coll, "assets/coll.xpm");
 	cache_idle(mlx);
 	cache_run(mlx);
-	cache_static_assets(mlx);
+	cache_static_assets(mlx, &mlx->img_cache.static_assets, 1);
 }

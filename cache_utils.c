@@ -27,3 +27,24 @@ void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror)
 			dst[w + (h * mirror->size_line / (mirror->bpp / 8))] = src[img->size_line + (h * img->size_line / (img->bpp / 8)) - w];
 	}
 }
+
+void	cache_shadow(t_data *obj, t_data *shadow)
+{
+	int	w;
+	int	h;
+	int	*dst;
+	int	*src;
+
+	src = (int *)obj->img;
+	dst = (int *)shadow->img;
+	h = -1;
+	while (++h < obj->height)
+	{
+		w = -1;
+		while (++w < obj->width)
+		{
+			if (src[w + (h * obj->size_line / (obj->bpp / 8))] == TRANS_INT)
+				dst[w + (h * shadow->size_line / (shadow->bpp / 8))] = TRANS_INT;
+		}
+	}
+}
