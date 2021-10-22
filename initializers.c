@@ -7,9 +7,10 @@
 
 void	init_player_state(t_vars *mlx)
 {
-	mlx->player_state.state = 0;
+	mlx->player_state = (t_player_state){.state = 0};
 	mlx->player_state.coords.x = mlx->map->player_coords.x * STATIC_OFFSET;
 	mlx->player_state.coords.y = mlx->map->player_coords.y * STATIC_OFFSET;
+	calc_offsets(&mlx->img_cache.player.player_idle[0], &mlx->player_state.offsets);
 	mlx->player_state.direction = RIGHT;
 }
 

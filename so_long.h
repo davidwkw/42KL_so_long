@@ -27,6 +27,7 @@ typedef struct	s_offsets
 {
 	int	top;
 	int	left;
+	int	right;
 	int	bottom;
 }	t_offsets;
 
@@ -39,7 +40,6 @@ typedef struct	s_data
 	int			bpp;
 	int			size_line;
 	int			endian;
-	t_offsets	offsets;
 }	t_data;
 
 typedef struct	s_player_img
@@ -71,6 +71,7 @@ typedef struct	s_player_state
 	int				state;
 	unsigned int	direction : 1;
 	t_coords		coords;
+	t_offsets		offsets;
 }	t_player_state;
 
 typedef struct	s_map
@@ -159,6 +160,6 @@ void	*select_idle_img(t_vars *mlx, unsigned int state);
 void	*select_run_img(t_vars *mlx, unsigned int state);
 
 // offset_handler.c
-void	calc_offsets(t_data *img);
+void	calc_offsets(t_data *img, t_offsets *offset);
 
 #endif

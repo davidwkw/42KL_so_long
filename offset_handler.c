@@ -1,27 +1,58 @@
 #include "so_long.h"
 
-void	calc_offsets(t_data *img)
+static void set_top_bottom(int *img_data, t_data *img, t_offsets *offset)
 {
 	int w;
 	int	h;
-	int	*img_data;
+	int	value;
 
-	img_data = (int *)img->img;
 	h = -1;
 	while (++h < img->height)
 	{
 		w = -1;
 		while (++w < img->width)
 		{
-			if (!img->offsets.top && img_data[(h * img->size_line / (img->bpp / 8)) + w] != TRANS_INT)
+			value = img_data[(h * img->size_line / (img->bpp / 8)) + w];
+			if (!offset->top && value != TRANS_INT)
 			{
-				img->offsets.top = h;
-				img->offsets.left = w;
+				offset->top = h;
+				offset->bottom = h;
 			}
-			else if (img_data[(h * img->size_line / (img->bpp / 8)) + w] != TRANS_INT && w < img->offsets.left)
-				img->offsets.left = w;
-			if (img_data[(h * img->size_line / (img->bpp / 8)) + w] != TRANS_INT && h > img->offsets.bottom)
-				img->offsets.bottom = h;
+			else if (value != TRANS_INT && h > offset->bottom)
+				offset->bottom = h;
 		}
 	}
+}
+
+static void	set_left_right(int *img_data, t_data *img, t_offsets *offset)
+{
+	int w;
+	int	h;
+	int	value;
+
+	w = -1;
+	while (++w < img->width)
+	{
+		h = -1;
+		while (++h < img->height)
+		{
+			value = img_data[(h * img->size_line / (img->bpp / 8)) + w];
+			if (!offset->left && value != TRANS_INT)
+			{
+				offset->left = w;
+				offset->right = w;
+			}
+			else if (value != TRANS_INT && w > offset->right)
+				offset->right = w;
+		}
+	}
+}
+
+void	calc_offsets(t_data *img, t_offsets *offset)
+{
+	int	*img_data;
+
+	img_data = (int *)img->img;
+	set_top_bottom(img_data, img, offset);
+	set_left_right(img_data, img, offset);
 }
