@@ -186,4 +186,9 @@ void	super_sample_board(t_vars *mlx);
 int	check_p_map(t_vars *mlx, char obj, int p_x, int p_y);
 int	is_oob(t_vars *mlx, int x, int y);
 
+// mapping_handler.c
+void	set_bg(char *c);
+void	set_player(char *c);
+void	map_player(t_vars *mlx, int p_x, int p_y, void (*func)(char *c));
+
 #endif
