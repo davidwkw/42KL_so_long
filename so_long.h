@@ -22,10 +22,13 @@
 # define ANIM_TRANSITION 240
 # define MOVE_SPEED 20
 # define TRANS_INT -16777216
+
+# define P_IMG_WIDTH 100
+# define P_IMG_HEIGHT 55
 # define P_TOP_OFFSET 13
 # define P_LEFT_OFFSET 38
-# define P_RIGHT_OFFSET 3
-# define P_BOTTOM_OFFSET
+# define P_RIGHT_OFFSET 38
+# define P_BOTTOM_OFFSET 2
 
 typedef struct	s_offsets
 {
@@ -112,7 +115,6 @@ void	error_handler(char *msg, char *func, int err_no);
 //map_utils.c
 void	check_tb_border(char *line);
 void	check_map_content(char *line, t_map *map, size_t y);
-void	super_sample_board(t_vars *mlx);
 
 // file_validator.c
 void	check_valid_ext(char *filename, char *ext_to_check);
@@ -155,9 +157,9 @@ void	cache_shadow(t_data *obj, t_data *shadow);
 int	key_handler(int key, t_vars *mlx);
 
 // utils.c
-int	arr_len(char **arr);
-int	exit_program(t_vars *mlx);
-int	modulate_fps(int fps);
+int		arr_len(char **arr);
+int		exit_program(t_vars *mlx);
+int		modulate_fps(int fps);
 void	display_info(t_vars *mlx);
 
 // image_selector.c
@@ -167,6 +169,10 @@ void	*select_run_img(t_vars *mlx, unsigned int state);
 // offset_handler.c
 void	calc_offsets(t_data *img, t_offsets *offset);
 
-void	upscale_board(t_map *map, char ***ss_board);
+// ss_utils.c
+void	super_sample_player(t_vars *mlx);
+
+// ss_handler.c
+void	super_sample_board(t_vars *mlx);
 
 #endif

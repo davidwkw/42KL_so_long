@@ -15,7 +15,8 @@ SRCS =	main.c \
 		image_selector.c \
 		offset_handler.c \
 		render.c \
-		board_utils.c
+		ss_handler.c \
+		ss_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

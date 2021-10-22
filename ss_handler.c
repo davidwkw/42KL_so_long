@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	upscale_board(t_map *map, char ***ss_board)
+static void	upscale_board(t_map *map, char ***ss_board)
 {
 	size_t	x;
 	size_t	y;
@@ -32,8 +32,7 @@ void	upscale_board(t_map *map, char ***ss_board)
 	}
 }
 
-
-void	super_sample_board(t_vars *mlx)
+static void	super_sample_static(t_vars *mlx)
 {
 	int		w;
 	int		h;
@@ -56,4 +55,10 @@ void	super_sample_board(t_vars *mlx)
 		}
 	}
 	mlx_destroy_image(mlx->mlx, img.addr);
+}
+
+void	super_sample_board(t_vars *mlx)
+{
+	super_sample_static(mlx);
+	super_sample_player(mlx);
 }
