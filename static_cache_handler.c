@@ -38,6 +38,27 @@ void	paint_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 	mlx_destroy_image(mlx->mlx, shadow.addr);
 }
 
+void	paint_trans(t_data *canvas, int x, int y)
+{
+	int w;
+	int	h;
+	int	*img;
+
+	x *= STATIC_OFFSET;
+	y *= STATIC_OFFSET;
+	img = (int *)canvas->img;
+	h = -1;
+	while (++h < STATIC_OFFSET)
+	{
+		w = -1;
+		while (++w < STATIC_OFFSET)
+		{
+			if (img[(x + w) + ((y + h) * (canvas->size_line / (canvas->bpp / 8)))] == 0)
+				img[(x + w) + ((y + h) * (canvas->size_line / (canvas->bpp / 8)))] = TRANS_INT;
+		}
+	}
+}
+
 static t_data	*get_static_asset(t_vars *mlx, char c)
 {
 	if (c == '1')
@@ -66,6 +87,7 @@ void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg)
 		x = -1;
 		while (mlx->map->board[y][++x])
 		{
+			paint_trans(canvas, x, y);
 			asset = get_static_asset(mlx, mlx->map->board[y][x]);
 			if (bg)
 				paint_bg(mlx, canvas, asset, x, y);

@@ -22,6 +22,10 @@
 # define ANIM_TRANSITION 240
 # define MOVE_SPEED 20
 # define TRANS_INT -16777216
+# define P_TOP_OFFSET 13
+# define P_LEFT_OFFSET 38
+# define P_RIGHT_OFFSET 3
+# define P_BOTTOM_OFFSET
 
 typedef struct	s_offsets
 {
@@ -99,6 +103,7 @@ typedef struct	s_vars
 	struct timeval	last_move_time;
 	t_coords		cam;
 	unsigned int	total_steps;
+	char			**ss_board;
 }	t_vars;
 
 // error_handler.c
@@ -161,5 +166,7 @@ void	*select_run_img(t_vars *mlx, unsigned int state);
 
 // offset_handler.c
 void	calc_offsets(t_data *img, t_offsets *offset);
+
+void	upscale_board(t_map *map, char ***ss_board);
 
 #endif

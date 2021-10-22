@@ -31,10 +31,10 @@ static void	check_collision(t_vars *mlx, char move)
 
 	x = mlx->player_state.coords.x;
 	y = mlx->player_state.coords.y;
-	top_left = mlx->map->ss_board[y + 14][x + 40];
-	top_right = mlx->map->ss_board[y + 14][x + mlx->img_cache.player.player_run->width - 50];
-	bottom_left = mlx->map->ss_board[y + mlx->img_cache.player.player_run->height - 2][x + 40];
-	bottom_right = mlx->map->ss_board[y + mlx->img_cache.player.player_run->height - 2][x + mlx->img_cache.player.player_run->width - 50];
+	top_left = mlx->ss_board[y + 14][x + 40];
+	top_right = mlx->ss_board[y + 14][x + mlx->img_cache.player.player_run->width - 50];
+	bottom_left = mlx->ss_board[y + mlx->img_cache.player.player_run->height - 2][x + 40];
+	bottom_right = mlx->ss_board[y + mlx->img_cache.player.player_run->height - 2][x + mlx->img_cache.player.player_run->width - 50];
 	if (top_left == '1' || bottom_right == '1' || top_right == '1' || bottom_left == '1')
 		undo_move(mlx, move);
 	else if (top_left == 'C' || bottom_right == 'C' || top_right == 'C' || bottom_left == 'C')

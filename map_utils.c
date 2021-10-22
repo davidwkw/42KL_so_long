@@ -51,27 +51,3 @@ void	check_map_content(char *line, t_map *map, size_t y)
 		x++;
 	}
 }
-
-void	super_sample_board(t_vars *mlx)
-{
-	int		w;
-	int		h;
-	int		*src;
-	t_data	img;
-	int		pixel_color;
-
-	cache_static_assets(mlx, &img, 0);
-	src = (int *)img.img;
-	h = -1;
-	while (++h < img.height)
-	{
-		w = -1;
-		while (++w < img.width)
-		{
-			pixel_color = src[w + (h * (img.size_line / (img.bpp / 8)))];
-			if (pixel_color == TRANS_INT || pixel_color == 0)
-				mlx->map->ss_board[h][w] = '0';
-		}
-	}
-	mlx_destroy_image(mlx->mlx, img.addr);
-}

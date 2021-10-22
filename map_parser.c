@@ -41,34 +41,6 @@ static void	cache_map(int fd, t_map *map)
 	free(line);
 }
 
-static void	upscale_board(t_map *map)
-{
-	size_t	x;
-	size_t	y;
-	size_t	i;
-	size_t 	j;
-
-	map->ss_board = (char **)malloc(sizeof(char *) * ((map->size_y * STATIC_OFFSET) + (map->size_y * STATIC_OFFSET * map->size_x * STATIC_OFFSET)));
-	y = -1;
-	while (++y < map->size_y * STATIC_OFFSET)
-		map->ss_board[y] = (char *)(map->ss_board + (map->size_y * STATIC_OFFSET)) + (map->size_x * STATIC_OFFSET * y);
-	y = -1;
-	while (++y < map->size_y)
-	{
-		x = -1;
-		while (++x < map->size_x)
-		{
-			j = -1;
-			while (++j < STATIC_OFFSET)
-			{
-				i = -1;
-				while (++i < STATIC_OFFSET)
-					map->ss_board[(y * STATIC_OFFSET) + j][(x * STATIC_OFFSET) + i] = map->board[y][x];
-			}	
-		}
-	}
-}
-
 void	parse_map(char *filename, t_map *map)
 {
 	int		fd;
@@ -81,5 +53,4 @@ void	parse_map(char *filename, t_map *map)
 	cache_map(fd, map);
 	close(fd);
 	is_valid_map(map);
-	upscale_board(map);
 }
