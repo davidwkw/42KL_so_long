@@ -12,15 +12,20 @@
 # include "./libft/libft.h"
 
 # define STATIC_OFFSET 100
+
 # define LEFT 0
 # define RIGHT 1
+
 # define FPS 30
 # define IDLE_FRAMES 8
 # define RUN_FRAMES 10
+
 # define MAX_WIN_HEIGHT 760
 # define MAX_WIN_WIDTH 1900
+
 # define ANIM_TRANSITION 240
 # define MOVE_SPEED 20
+
 # define TRANS_INT -16777216
 
 # define P_IMG_WIDTH 100
@@ -29,6 +34,8 @@
 # define P_LEFT_OFFSET 38
 # define P_RIGHT_OFFSET 38
 # define P_BOTTOM_OFFSET 2
+# define P_WIDTH (P_IMG_WIDTH - P_LEFT_OFFSET - P_RIGHT_OFFSET)
+# define P_HEIGHT (P_IMG_HEIGHT - P_TOP_OFFSET - P_BOTTOM_OFFSET)
 
 typedef struct	s_offsets
 {
@@ -174,5 +181,9 @@ void	super_sample_player(t_vars *mlx);
 
 // ss_handler.c
 void	super_sample_board(t_vars *mlx);
+
+// movement_utils.c
+int	check_p_map(t_vars *mlx, char obj, int p_x, int p_y);
+int	is_oob(t_vars *mlx, int x, int y);
 
 #endif
