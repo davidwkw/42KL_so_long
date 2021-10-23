@@ -30,11 +30,7 @@ static void	check_p_collision(t_vars *mlx, char move)
 	if (is_oob(mlx, x, y) || check_p_map(mlx, '1', x, y))
 		undo_move(mlx, move);
 	else if (check_p_map(mlx, 'C', x, y))
-	{
-		paint_tile(&mlx->img_cache.static_assets, (x + 80) / 100, (y + 80) / 100, &mlx->img_cache.bg);
-		// mlx->map->board[y][x] = '0';
-		mlx->map->collectible--;
-	}
+		collection_handler(mlx, x, y);
 	else if (check_p_map(mlx, 'E', x, y))
 		check_win(mlx);
 }
@@ -42,7 +38,7 @@ static void	check_p_collision(t_vars *mlx, char move)
 void	movement_handler(int keycode, t_vars *mlx)
 {
 	gettimeofday(&mlx->last_move_time, NULL);
-	map_player(mlx, mlx->player_state.coords.x, mlx->player_state.coords.y, set_bg);
+	map_player(&mlx->ss_board, mlx->player_state.coords.x, mlx->player_state.coords.y, '0');
 	if (keycode == 'a')
 	{
 		mlx->player_state.direction = LEFT;
@@ -60,7 +56,7 @@ void	movement_handler(int keycode, t_vars *mlx)
 	mlx->total_steps++;
 	mlx->player_state.state++;
 	check_p_collision(mlx, keycode);
-	map_player(mlx, mlx->player_state.coords.x, mlx->player_state.coords.y, set_player);
+	map_player(&mlx->ss_board, mlx->player_state.coords.x, mlx->player_state.coords.y, 'P');
 	printf("Total steps : %d\n", mlx->total_steps);
 }
 

@@ -187,8 +187,11 @@ int	check_p_map(t_vars *mlx, char obj, int p_x, int p_y);
 int	is_oob(t_vars *mlx, int x, int y);
 
 // mapping_handler.c
-void	set_bg(char *c);
-void	set_player(char *c);
-void	map_player(t_vars *mlx, int p_x, int p_y, void (*func)(char *c));
+void	map_player(char ***ss_board, int p_x, int p_y, char c);
+void	map_tile(char ***ss_board, int origin_x, int origin_y, char c);
+void	locate_collision(char ***ss_board,  int p_x, int p_y, int *coll_x, int *coll_y);
+
+// collection_handler.c
+void	collection_handler(t_vars *mlx, int x, int y);
 
 #endif

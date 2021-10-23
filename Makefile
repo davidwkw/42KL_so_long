@@ -19,6 +19,7 @@ SRCS =	main.c \
 		ss_utils.c \
 		movement_utils.c \
 		mapping_handler.c \
+		collection_handler.c \
 
 OBJS = $(SRCS:.c=.o)
 
