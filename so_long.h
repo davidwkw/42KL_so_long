@@ -23,7 +23,7 @@
 # define MAX_WIN_HEIGHT 760
 # define MAX_WIN_WIDTH 1900
 
-# define ANIM_TRANSITION 240
+# define ANIM_TRANSITION 230
 # define MOVE_SPEED 20
 
 # define TRANS_INT -16777216
@@ -86,7 +86,7 @@ typedef struct	s_player_state
 	unsigned int	direction : 1;
 	t_coords		coords;
 	t_offsets		offsets;
-}	t_player_state;
+}	t_p_state;
 
 typedef struct	s_map
 {
@@ -108,10 +108,11 @@ typedef struct	s_vars
 	int				win_width;
 	int				win_height;
 	t_imgs			img_cache;
-	t_player_state	player_state;
+	t_p_state	player_state;
 	t_map			*map;
 	struct timeval	last_move_time;
 	t_coords		cam;
+	t_coords		p_cam;
 	unsigned int	total_steps;
 	char			**ss_board;
 }	t_vars;
@@ -130,12 +131,13 @@ void	parse_map(char *filename, t_map *map);
 // initializers.c
 void	init_images(t_vars *mlx);
 void	init_player_state(t_vars *mlx);
+void	init_cam(t_vars *mlx);
 
 // mlx_handler.c
 void	mlx_handler(t_map *map);
 
 // render_utils.c
-void	render_bg(t_vars *mlx, t_data *img);
+void	render_bg(t_data *img, t_data *bg);
 
 // render.c
 int		render(t_vars *mlx);
@@ -168,6 +170,7 @@ int		arr_len(char **arr);
 int		exit_program(t_vars *mlx);
 int		modulate_fps(int fps);
 void	display_info(t_vars *mlx);
+int		abs(int num);
 
 // image_selector.c
 void	*select_idle_img(t_vars *mlx, unsigned int state);
@@ -183,13 +186,13 @@ void	super_sample_player(t_vars *mlx);
 void	super_sample_board(t_vars *mlx);
 
 // movement_utils.c
-int	check_p_map(t_vars *mlx, char obj, int p_x, int p_y);
+int	check_p_map(char ***ss_board, char obj, int p_x, int p_y);
 int	is_oob(t_vars *mlx, int x, int y);
 
 // mapping_handler.c
 void	map_player(char ***ss_board, int p_x, int p_y, char c);
 void	map_tile(char ***ss_board, int origin_x, int origin_y, char c);
-void	locate_collision(char ***ss_board,  int p_x, int p_y, int *coll_x, int *coll_y);
+void	locate_p_collision(char ***ss_board,  int p_x, int p_y, int *coll_x, int *coll_y, char c);
 
 // collection_handler.c
 void	collection_handler(t_vars *mlx, int x, int y);

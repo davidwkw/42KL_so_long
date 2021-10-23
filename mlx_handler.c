@@ -18,6 +18,7 @@ void	mlx_handler(t_map *map)
 	init_images(&mlx);
 	init_player_state(&mlx);
 	super_sample_board(&mlx);
+	// init_cam(&mlx);
 	printf("Total Steps : %d\n", mlx.total_steps);
 	mlx.win = mlx_new_window(mlx.mlx, mlx.win_width, mlx.win_height, "So_long");
 	mlx_key_hook(mlx.win, key_handler,&mlx);

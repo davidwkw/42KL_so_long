@@ -10,6 +10,13 @@ int	arr_len(char **arr)
 	return (i);
 }
 
+int	abs(int num)
+{
+	if (num < 0)
+		num *= -1;
+	return (num);
+}
+
 int	modulate_fps(int fps)
 {
 	struct timeval	tv;

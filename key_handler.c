@@ -27,11 +27,11 @@ static void	check_p_collision(t_vars *mlx, char move)
 
 	x = mlx->player_state.coords.x;
 	y = mlx->player_state.coords.y;
-	if (is_oob(mlx, x, y) || check_p_map(mlx, '1', x, y))
+	if (is_oob(mlx, x, y) || check_p_map(&mlx->ss_board, '1', x, y))
 		undo_move(mlx, move);
-	else if (check_p_map(mlx, 'C', x, y))
+	else if (check_p_map(&mlx->ss_board, 'C', x, y))
 		collection_handler(mlx, x, y);
-	else if (check_p_map(mlx, 'E', x, y))
+	else if (check_p_map(&mlx->ss_board, 'E', x, y))
 		check_win(mlx);
 }
 

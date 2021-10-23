@@ -3,11 +3,18 @@
 // void	init_cam(t_vars *mlx)
 // {
 // 	if (mlx->img_cache.static_assets.width > mlx->win_width)
+// 	{
+// 		something();
+// 	}
+// 	if (mlx->img_cache.static_assets.height > mlx->win_height)
+// 	{
+
+// 	}
 // }
 
 void	init_player_state(t_vars *mlx)
 {
-	mlx->player_state = (t_player_state){.state = 0};
+	mlx->player_state = (t_p_state){.state = 0};
 	mlx->player_state.coords.x = mlx->map->player_coords.x * STATIC_OFFSET;
 	mlx->player_state.coords.y = mlx->map->player_coords.y * STATIC_OFFSET;
 	calc_offsets(&mlx->img_cache.player.player_idle[0], &mlx->player_state.offsets);

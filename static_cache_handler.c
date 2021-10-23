@@ -32,7 +32,7 @@ void	paint_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 	shadow.height = asset->height;
 	shadow.img = mlx_get_data_addr(shadow.addr, &shadow.bpp, &shadow.size_line, &shadow.endian);
 	cache_shadow(asset, &shadow);
-	render_bg(mlx, &shadow);
+	render_bg(&shadow, &mlx->img_cache.bg);
 	paint_tile(canvas, x, y, &shadow);
 	paint_tile(canvas, x, y, &mlx->img_cache.bg);
 	mlx_destroy_image(mlx->mlx, shadow.addr);
