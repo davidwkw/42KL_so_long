@@ -15,10 +15,10 @@ void	mlx_handler(t_map *map)
 		mlx.win_width = MAX_WIN_WIDTH;
 	if (mlx.win_height > MAX_WIN_HEIGHT)
 		mlx.win_height = MAX_WIN_HEIGHT;
-	init_images(&mlx);
-	init_player_state(&mlx);
+	init_images(&mlx, mlx.mlx, &mlx.img_cache);
+	init_player_state(&mlx.player_state, mlx.map, &mlx.img_cache.player);
 	super_sample_board(&mlx);
-	// init_cam(&mlx);
+	init_cam(&mlx, &mlx.cam, &mlx.img_cache.static_assets);
 	printf("Total Steps : %d\n", mlx.total_steps);
 	mlx.win = mlx_new_window(mlx.mlx, mlx.win_width, mlx.win_height, "So_long");
 	mlx_key_hook(mlx.win, key_handler,&mlx);

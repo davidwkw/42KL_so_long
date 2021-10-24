@@ -6,22 +6,22 @@ void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas)
 	cam->max_y_offset = canvas->height - mlx->win_height;
 }
 
-void	init_player_state(t_vars *mlx)
+void	init_player_state(t_p_state *player_state, t_map *map, t_player_img *player)
 {
-	mlx->player_state = (t_p_state){.state = 0};
-	mlx->player_state.coords.x = mlx->map->player_coords.x * STATIC_OFFSET;
-	mlx->player_state.coords.y = mlx->map->player_coords.y * STATIC_OFFSET;
-	calc_offsets(&mlx->img_cache.player.player_idle[0], &mlx->player_state.offsets);
-	mlx->player_state.direction = RIGHT;
+	*player_state = (t_p_state){.state = 0};
+	player_state->coords.x = map->player_coords.x * STATIC_OFFSET;
+	player_state->coords.y = map->player_coords.y * STATIC_OFFSET;
+	calc_offsets(&player->player_idle[0], &player_state->offsets);
+	player_state->direction = RIGHT;
 }
 
-void	init_images(t_vars *mlx)
+void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache)
 {
-	cache_image(mlx->mlx, &mlx->img_cache.bg, "assets/dirt.xpm");
-	cache_image(mlx->mlx, &mlx->img_cache.wall, "assets/stone.xpm");
-	cache_image(mlx->mlx, &mlx->img_cache.exit, "assets/exit.xpm");
-	cache_image(mlx->mlx, &mlx->img_cache.coll, "assets/coll.xpm");
-	cache_idle(mlx);
-	cache_run(mlx);
-	cache_static_assets(mlx, &mlx->img_cache.static_assets, 1);
+	cache_image(p_mlx, &cache->bg, "assets/dirt.xpm");
+	cache_image(p_mlx, &cache->wall, "assets/stone.xpm");
+	cache_image(p_mlx, &cache->exit, "assets/exit.xpm");
+	cache_image(p_mlx, &cache->coll, "assets/coll.xpm");
+	cache_idle(mlx->mlx, &cache->player);
+	cache_run(mlx->mlx, &cache->player);
+	cache_static_assets(mlx, &cache->static_assets, 1);
 }

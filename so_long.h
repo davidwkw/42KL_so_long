@@ -135,8 +135,8 @@ void	check_valid_ext(char *filename, char *ext_to_check);
 void	parse_map(char *filename, t_map *map);
 
 // initializers.c
-void	init_images(t_vars *mlx);
-void	init_player_state(t_vars *mlx);
+void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache);
+void	init_player_state(t_p_state *player_state, t_map *map, t_player_img *player);
 void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas);
 
 // mlx_handler.c
@@ -160,8 +160,8 @@ void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg);
 void	paint_tile(t_data *img, int x, int y, t_data *asset);
 
 // player_cache_handler.c
-void	cache_idle(t_vars *mlx);
-void	cache_run(t_vars *mlx);
+void	cache_idle(void *mlx, t_player_img *player);
+void	cache_run(void *mlx, t_player_img *player);
 
 // cache_utils.c
 void	cache_image(void *mlx, t_data *img, char *path);
