@@ -1,16 +1,10 @@
 #include "so_long.h"
 
-// void	init_cam(t_vars *mlx)
-// {
-// 	if (mlx->img_cache.static_assets.width > mlx->win_width)
-// 	{
-// 		something();
-// 	}
-// 	if (mlx->img_cache.static_assets.height > mlx->win_height)
-// 	{
-
-// 	}
-// }
+void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas)
+{
+	cam->max_x_offset = canvas->width - mlx->win_width;
+	cam->max_y_offset = canvas->height - mlx->win_height;
+}
 
 void	init_player_state(t_vars *mlx)
 {

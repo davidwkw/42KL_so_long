@@ -88,6 +88,13 @@ typedef struct	s_player_state
 	t_offsets		offsets;
 }	t_p_state;
 
+typedef struct	s_cam
+{
+	t_coords	coords;
+	int			max_x_offset;
+	int			max_y_offset;
+}	t_cam;
+
 typedef struct	s_map
 {
 	char			**board;
@@ -108,11 +115,10 @@ typedef struct	s_vars
 	int				win_width;
 	int				win_height;
 	t_imgs			img_cache;
-	t_p_state	player_state;
+	t_p_state		player_state;
 	t_map			*map;
 	struct timeval	last_move_time;
-	t_coords		cam;
-	t_coords		p_cam;
+	t_cam			cam;
 	unsigned int	total_steps;
 	char			**ss_board;
 }	t_vars;
@@ -131,7 +137,7 @@ void	parse_map(char *filename, t_map *map);
 // initializers.c
 void	init_images(t_vars *mlx);
 void	init_player_state(t_vars *mlx);
-void	init_cam(t_vars *mlx);
+void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas);
 
 // mlx_handler.c
 void	mlx_handler(t_map *map);
