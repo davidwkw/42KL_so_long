@@ -42,10 +42,10 @@
 # define P_LEFT_OFFSET 38
 # define P_RIGHT_OFFSET 38
 # define P_BOTTOM_OFFSET 2
-# define P_WIDTH (P_IMG_WIDTH - P_LEFT_OFFSET - P_RIGHT_OFFSET)
-# define P_HEIGHT (P_IMG_HEIGHT - P_TOP_OFFSET - P_BOTTOM_OFFSET)
+# define P_WIDTH 24
+# define P_HEIGHT 40
 
-typedef struct	s_offsets
+typedef struct s_offsets
 {
 	int	top;
 	int	left;
@@ -53,7 +53,7 @@ typedef struct	s_offsets
 	int	bottom;
 }	t_offsets;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*addr;
 	char	*img;
@@ -64,7 +64,7 @@ typedef struct	s_data
 	int		endian;
 }	t_data;
 
-typedef struct	s_player_img
+typedef struct s_player_img
 {
 	t_data	player_idle[IDLE_FRAMES];
 	t_data	m_player_idle[IDLE_FRAMES];
@@ -72,23 +72,23 @@ typedef struct	s_player_img
 	t_data	m_player_run[RUN_FRAMES];
 }	t_p_imgs;
 
-typedef struct	s_imgs
+typedef struct s_imgs
 {
-	t_data	bg;
+	t_data		bg;
 	t_p_imgs	player;
-	t_data	coll;
-	t_data	wall;
-	t_data	exit;
-	t_data	static_assets;
+	t_data		coll;
+	t_data		wall;
+	t_data		exit;
+	t_data		static_assets;
 }	t_imgs;
 
-typedef struct	s_coords
+typedef struct s_coords
 {
 	int	x;
-	int y;
+	int	y;
 }	t_coords;
 
-typedef struct	s_player_state
+typedef struct s_player_state
 {
 	int				state;
 	unsigned int	direction : 1;
@@ -97,7 +97,7 @@ typedef struct	s_player_state
 	struct timeval	last_move_time;
 }	t_p_state;
 
-typedef struct	s_cam
+typedef struct s_cam
 {
 	t_coords	w_coords;
 	t_coords	p_coords;
@@ -105,7 +105,7 @@ typedef struct	s_cam
 	int			max_y_offset;
 }	t_cam;
 
-typedef struct	s_map
+typedef struct s_map
 {
 	char			**board;
 	int				steps;
@@ -118,7 +118,7 @@ typedef struct	s_map
 	char			**ss_board;
 }	t_map;
 
-typedef struct	s_vars
+typedef struct s_vars
 {
 	void			*mlx;
 	void			*win;
@@ -145,7 +145,8 @@ void	parse_map(char *filename, t_map *map);
 
 // initializers.c
 void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache);
-void	init_player_state(t_p_state *player_state, t_map *map, t_p_imgs *player);
+void	init_player_state(t_p_state *player_state,
+			t_map *map, t_p_imgs *player);
 void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas);
 void	init_window_var(t_vars *mlx, t_map *map);
 
