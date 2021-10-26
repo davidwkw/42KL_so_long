@@ -34,7 +34,7 @@ void	parse_map_items(char c, t_map *map, int x, int y)
 		map->exit++;
 }
 
-void check_tb_border(char *line)
+void	check_tb_border(char *line)
 {
 	size_t	i;
 

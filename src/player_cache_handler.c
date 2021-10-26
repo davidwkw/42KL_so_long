@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void mirror_img(void *mlx, t_data player[], t_data m_player[], int num)
+static void	mirror_img(void *mlx, t_data player[], t_data m_player[], int num)
 {
 	int	i;
 

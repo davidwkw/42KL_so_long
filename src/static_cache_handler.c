@@ -14,9 +14,9 @@
 
 void	render_tile(t_data *img, int x, int y, t_data *asset)
 {
-	int w;
+	int	w;
 	int	h;
-	int *src;
+	int	*src;
 	int	*dst;
 
 	src = (int *)asset->img;
@@ -51,7 +51,7 @@ void	render_asset_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 
 static void	render_trans(t_data *canvas, int x, int y)
 {
-	int w;
+	int	w;
 	int	h;
 	int	*img;
 
@@ -79,7 +79,7 @@ static t_data	*get_static_asset(t_vars *mlx, char c)
 	else if (c == 'C')
 		return (&mlx->img_cache.coll);
 	else
-		return &mlx->img_cache.bg;
+		return (&mlx->img_cache.bg);
 }
 
 void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg)

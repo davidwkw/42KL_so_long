@@ -14,9 +14,9 @@
 
 void	render_bg(t_data *img, t_data *bg)
 {
-	int w;
+	int	w;
 	int	h;
-	int *src;
+	int	*src;
 	int	*dst;
 
 	src = (int *)bg->img;

@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-static void set_top_bottom(int *img_data, t_data *img, t_offsets *offset)
+static void	set_top_bottom(int *img_data, t_data *img, t_offsets *offset)
 {
-	int w;
+	int	w;
 	int	h;
 	int	value;
 
@@ -38,7 +38,7 @@ static void set_top_bottom(int *img_data, t_data *img, t_offsets *offset)
 
 static void	set_left_right(int *img_data, t_data *img, t_offsets *offset)
 {
-	int w;
+	int	w;
 	int	h;
 	int	value;
 

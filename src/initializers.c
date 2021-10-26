@@ -48,7 +48,7 @@ void	init_window_var(t_vars *mlx, t_map *map)
 	mlx->win_width = map->size_x * STATIC_OFFSET;
 	mlx->win_height = map->size_y * STATIC_OFFSET;
 	mlx_get_screen_size(mlx->mlx, &width, &height);
-	if(mlx->win_width > width)
+	if (mlx->win_width > width)
 		mlx->win_width = width;
 	if (mlx->win_height > height)
 		mlx->win_height = height - 70;

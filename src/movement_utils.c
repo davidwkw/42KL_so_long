@@ -14,9 +14,9 @@
 
 int	check_p_map(char ***ss_board, char obj, int p_x, int p_y)
 {
-	int x;
-	int y;
-	int w;
+	int	x;
+	int	y;
+	int	w;
 	int	h;
 
 	h = p_y + P_HEIGHT;
@@ -38,7 +38,7 @@ int	check_p_map(char ***ss_board, char obj, int p_x, int p_y)
 
 int	is_oob(t_vars *mlx, int x, int y)
 {
-	int map_x;
+	int	map_x;
 	int	map_y;
 
 	map_x = mlx->img_cache.static_assets.width;

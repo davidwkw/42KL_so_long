@@ -14,7 +14,7 @@
 
 static char	*get_file_ext(char *filename)
 {
-	char *ext;
+	char	*ext;
 
 	ext = ft_strrchr(filename, '.');
 	if (!ext || ext == filename)

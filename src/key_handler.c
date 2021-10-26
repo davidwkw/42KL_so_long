@@ -34,8 +34,8 @@ static void	check_win(t_vars *mlx)
 
 static void	check_p_collision(t_vars *mlx, char move)
 {
-	int		x;
-	int 	y;
+	int	x;
+	int	y;
 
 	x = mlx->player_state.coords.x;
 	y = mlx->player_state.coords.y;

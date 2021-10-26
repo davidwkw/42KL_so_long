@@ -14,9 +14,9 @@
 
 void	map_player(char ***ss_board, int p_x, int p_y, char c)
 {
-	int	w;
-	int	h;
-	int	x;
+	int w;
+	int h;
+	int x;
 	int y;
 
 	w = p_x + P_WIDTH;
@@ -39,7 +39,7 @@ void	map_tile(char ***ss_board, int origin_x, int origin_y, char c)
 	int	w;
 	int	h;
 	int	x;
-	int y;
+	int	y;
 
 	w = origin_x + STATIC_OFFSET;
 	h = origin_y + STATIC_OFFSET;
@@ -56,11 +56,11 @@ void	map_tile(char ***ss_board, int origin_x, int origin_y, char c)
 	}
 }
 
-void	locate_p_collision(char ***ss_board,  int p_x, int p_y, int *coll_x, int *coll_y, char c)
+void	locate_p_collision(char ***ss_board, int p_x, int p_y, int *coll_x, int *coll_y, char c)
 {
-	int x;
-	int y;
-	int w;
+	int	x;
+	int	y;
+	int	w;
 	int	h;
 
 	h = p_y + P_HEIGHT;

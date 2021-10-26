@@ -31,8 +31,8 @@ int	abs(int num)
 
 int	modulate_fps(int fps)
 {
-	struct timeval	tv;
-	static struct timeval prev;
+	struct timeval			tv;
+	static struct timeval	prev;
 
 	gettimeofday(&tv, NULL);
 	if (tv.tv_sec == prev.tv_sec && (tv.tv_usec - prev.tv_usec) < (1000000 / fps))
