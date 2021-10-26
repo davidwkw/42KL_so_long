@@ -28,7 +28,8 @@ void	render_bg(t_data *img, t_data *bg)
 		while (++w < img->width)
 		{
 			if (dst[(h * img->size_line / (img->bpp / 8)) + w] == TRANS_INT)
-				dst[(h * (img->size_line / (img->bpp / 8))) + w] = src[(h * (bg->size_line / (bg->bpp / 8))) + w];
+				dst[(h * (img->size_line / (img->bpp / 8))) + w]
+				= src[(h * (bg->size_line / (bg->bpp / 8))) + w];
 		}
 	}
 }
