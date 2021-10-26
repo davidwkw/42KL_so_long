@@ -16,7 +16,7 @@ static void	offset_p_top(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
-	int p_x;
+	int	p_x;
 	int	p_y;
 
 	p_x = coords->x;
@@ -34,7 +34,7 @@ static void	offset_p_left(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
-	int p_x;
+	int	p_x;
 	int	p_y;
 
 	p_x = coords->x;
@@ -52,7 +52,7 @@ static void	offset_p_right(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
-	int p_x;
+	int	p_x;
 	int	p_y;
 
 	p_x = coords->x;
@@ -70,7 +70,7 @@ static void	offset_p_bottom(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
-	int p_x;
+	int	p_x;
 	int	p_y;
 
 	p_x = coords->x;
