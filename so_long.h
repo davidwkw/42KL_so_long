@@ -20,9 +20,6 @@
 # define IDLE_FRAMES 8
 # define RUN_FRAMES 10
 
-# define MAX_WIN_HEIGHT 800
-# define MAX_WIN_WIDTH 1500
-
 # define ANIM_TRANSITION 230
 # define MOVE_SPEED 20
 
@@ -139,6 +136,7 @@ void	parse_map(char *filename, t_map *map);
 void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache);
 void	init_player_state(t_p_state *player_state, t_map *map, t_p_imgs *player);
 void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas);
+void	init_window_var(t_vars *mlx, t_map *map);
 
 // mlx_handler.c
 void	mlx_handler(t_map *map);

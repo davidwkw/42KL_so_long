@@ -20,11 +20,24 @@ void	init_player_state(t_p_state *player_state, t_map *map, t_p_imgs *player)
 void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache)
 {
 	cache_image(p_mlx, &cache->bg, "assets/dirt.xpm");
-	// cache_image(p_mlx, &cache->bg, "assets/floor2.xpm");
 	cache_image(p_mlx, &cache->wall, "assets/stone.xpm");
-	cache_image(p_mlx, &cache->exit, "assets/exit.xpm");
-	cache_image(p_mlx, &cache->coll, "assets/coll.xpm");
+	cache_image(p_mlx, &cache->exit, "assets/door.xpm");
+	cache_image(p_mlx, &cache->coll, "assets/key.xpm");
 	cache_idle(mlx->mlx, &cache->player);
 	cache_run(mlx->mlx, &cache->player);
 	cache_static_assets(mlx, &cache->static_assets, 1);
+}
+
+void	init_window_var(t_vars *mlx, t_map *map)
+{
+	int	width;
+	int	height;
+
+	mlx->win_width = map->size_x * STATIC_OFFSET;
+	mlx->win_height = map->size_y * STATIC_OFFSET;
+	mlx_get_screen_size(mlx->mlx, &width, &height);
+	if(mlx->win_width > width)
+		mlx->win_width = width;
+	if (mlx->win_height > height)
+		mlx->win_height = height - 70;
 }

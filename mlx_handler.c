@@ -9,12 +9,7 @@ void	mlx_handler(t_map *map)
 	if (!mlx.mlx)
 		error_handler("Display var not configured", "main", EIO);
 	mlx.map	= map;
-	mlx.win_width = map->size_x * STATIC_OFFSET;
-	mlx.win_height = map->size_y * STATIC_OFFSET;
-	if(mlx.win_width > MAX_WIN_WIDTH)
-		mlx.win_width = MAX_WIN_WIDTH;
-	if (mlx.win_height > MAX_WIN_HEIGHT)
-		mlx.win_height = MAX_WIN_HEIGHT;
+	init_window_var(&mlx, mlx.map);
 	init_images(&mlx, mlx.mlx, &mlx.img_cache);
 	init_player_state(&mlx.player_state, mlx.map, &mlx.img_cache.player);
 	super_sample_board(&mlx);
