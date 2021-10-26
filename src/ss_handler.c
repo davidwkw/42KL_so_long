@@ -19,10 +19,6 @@ static void	upscale_board(t_map *map, char ***ss_board)
 	size_t	i;
 	size_t 	j;
 
-	// *ss_board = (char **)malloc(sizeof(char *) * ((map->size_y * STATIC_OFFSET) + (map->size_y * STATIC_OFFSET * map->size_x * STATIC_OFFSET)));
-	// y = -1;
-	// while (++y < map->size_y * STATIC_OFFSET)
-	// 	(*ss_board)[y] = (char *)(ss_board + (map->size_y * STATIC_OFFSET)) + (map->size_x * STATIC_OFFSET * y);
 	*ss_board = malloc(sizeof(char *) * (map->size_y * STATIC_OFFSET));
 	y = -1;
 	while (++y < map->size_y * STATIC_OFFSET)
