@@ -29,7 +29,8 @@ void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror)
 	mirror->addr = mlx_new_image(mlx, img->width, img->height);
 	mirror->height = img->height;
 	mirror->width = img->width;
-	mirror->img = mlx_get_data_addr(mirror->addr, &mirror->bpp, &mirror->size_line, &mirror->endian);
+	mirror->img = mlx_get_data_addr(mirror->addr, &mirror->bpp,
+				&mirror->size_line, &mirror->endian);
 	src = (int *)img->img;
 	dst = (int *)mirror->img;
 	h = -1;
