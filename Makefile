@@ -59,7 +59,7 @@ $(LIBFT) :
 $(MLX) :
 	@make -C mlx_linux
 
-$(NAME) : $(OBJS) $(LIBFT) $(MLX)
+$(NAME) : $(OBJS) $(INCLUDES)/so_long.h $(LIBFT) $(MLX)
 	@echo "Creating $(NAME).."
 	@echo "Your display variable is $$DISPLAY"
 	@$(CC) $(CFLAGS) -o $@ $^ $(MLXFLAGS)
