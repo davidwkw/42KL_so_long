@@ -35,7 +35,7 @@ static void	calc_p_cam(t_cam *cam)
 	cam->p_coords.y += cam->w_coords.y;
 }
 
-static void	display_handler(t_vars *mlx, struct timeval	*tv)
+static void	display_handler(t_vars *mlx, struct timeval *tv)
 {
 	unsigned long	delay;
 	void			*p_img;
@@ -45,7 +45,7 @@ static void	display_handler(t_vars *mlx, struct timeval	*tv)
 	calc_w_cam(mlx->win_width, mlx->win_height, &mlx->cam);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img_cache.static_assets.addr, mlx->cam.w_coords.x, mlx->cam.w_coords.y);
 	display_info(mlx);
-	delay = (tv->tv_sec - mlx->player_state.last_move_time.tv_sec) * 1000 + (tv->tv_usec - mlx->player_state.last_move_time.tv_usec) / 1000;	
+	delay = (tv->tv_sec - mlx->player_state.last_move_time.tv_sec) * 1000 + (tv->tv_usec - mlx->player_state.last_move_time.tv_usec) / 1000;
 	if (delay < ANIM_TRANSITION)
 		p_img = loop_run_player(&mlx->player_state, &mlx->img_cache.player, FPS);
 	else
