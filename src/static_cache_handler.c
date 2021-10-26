@@ -36,7 +36,7 @@ void	render_tile(t_data *img, int x, int y, t_data *asset)
 	}
 }
 
-void	render_asset_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
+void	render_asset_bg(t_vars *mlx, t_data *asset, int x, int y)
 {
 	t_data	shadow;
 
@@ -47,8 +47,8 @@ void	render_asset_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 			&shadow.bpp, &shadow.size_line, &shadow.endian);
 	cache_shadow(asset, &shadow);
 	render_bg(&shadow, &mlx->img_cache.bg);
-	render_tile(canvas, x, y, &shadow);
-	render_tile(canvas, x, y, &mlx->img_cache.bg);
+	render_tile(&mlx->img_cache.static_assets, x, y, &shadow);
+	render_tile(&mlx->img_cache.static_assets, x, y, &mlx->img_cache.bg);
 	mlx_destroy_image(mlx->mlx, shadow.addr);
 }
 
@@ -108,7 +108,7 @@ void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg)
 			render_trans(canvas, x, y);
 			asset = get_static_asset(mlx, mlx->map->board[y][x]);
 			if (bg)
-				render_asset_bg(mlx, canvas, asset, x, y);
+				render_asset_bg(mlx, asset, x, y);
 			render_tile(canvas, x, y, asset);
 		}
 	}

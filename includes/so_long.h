@@ -176,7 +176,7 @@ void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror);
 void	cache_shadow(t_data *obj, t_data *shadow);
 
 // key_handler.c
-int	key_handler(int key, t_vars *mlx);
+int		key_handler(int key, t_vars *mlx);
 
 // utils.c
 int		arr_len(char **arr);
@@ -199,15 +199,15 @@ void	super_sample_player(t_vars *mlx);
 void	super_sample_board(t_vars *mlx);
 
 // movement_utils.c
-int	check_p_map(char ***ss_board, char obj, int p_x, int p_y);
-int	is_oob(t_vars *mlx, int x, int y);
+int		check_p_map(char ***ss_board, char obj, int p_x, int p_y);
+int		is_oob(t_vars *mlx, int x, int y);
 
 // mapping_handler.c
 void	map_player(char ***ss_board, int p_x, int p_y, char c);
 void	map_tile(char ***ss_board, int origin_x, int origin_y, char c);
-void	locate_p_collision(char ***ss_board,  int p_x, int p_y, int *coll_x, int *coll_y, char c);
+void	locate_p_collision(t_vars *mlx, int *coll_x, int *coll_y, char c);
 
 // collection_handler.c
-void	collection_handler(t_vars *mlx, int x, int y);
+void	collection_handler(t_vars *mlx);
 
 #endif

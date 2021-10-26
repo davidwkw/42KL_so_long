@@ -42,7 +42,7 @@ static void	check_p_collision(t_vars *mlx, char move)
 	if (is_oob(mlx, x, y) || check_p_map(&mlx->ss_board, '1', x, y))
 		undo_move(mlx, move);
 	else if (check_p_map(&mlx->ss_board, 'C', x, y))
-		collection_handler(mlx, x, y);
+		collection_handler(mlx);
 	else if (check_p_map(&mlx->ss_board, 'E', x, y))
 		check_win(mlx);
 }

@@ -56,22 +56,22 @@ void	map_tile(char ***ss_board, int origin_x, int origin_y, char c)
 	}
 }
 
-void	locate_p_collision(char ***ss_board, int p_x, int p_y, int *coll_x, int *coll_y, char c)
+void	locate_p_collision(t_vars *mlx, int *coll_x, int *coll_y, char c)
 {
 	int	x;
 	int	y;
 	int	w;
 	int	h;
 
-	h = p_y + P_HEIGHT;
-	w = p_x + P_WIDTH;
-	y = p_y;
+	h = mlx->player_state.coords.y + P_HEIGHT;
+	w = mlx->player_state.coords.x + P_WIDTH;
+	y = mlx->player_state.coords.y;
 	while (y < h)
 	{
-		x = p_x;
+		x = mlx->player_state.coords.x;
 		while (x < w)
 		{
-			if ((*ss_board)[y][x] == c)
+			if (mlx->ss_board[y][x] == c)
 			{
 				*coll_x = x;
 				*coll_y = y;
