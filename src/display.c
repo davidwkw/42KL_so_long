@@ -53,10 +53,10 @@ static void	display_handler(t_vars *mlx, struct timeval *tv)
 		+ (tv->tv_usec - mlx->player_state.last_move_time.tv_usec) / 1000;
 	if (delay < ANIM_TRANSITION)
 		p_img = loop_run_player(&mlx->player_state,
-			&mlx->img_cache.player, FPS);
+				&mlx->img_cache.player, FPS);
 	else
 		p_img = loop_idle_player(&mlx->player_state,
-			&mlx->img_cache.player, FPS);
+				&mlx->img_cache.player, FPS);
 	calc_p_cam(&mlx->cam);
 	mlx_put_image_to_window(mlx->mlx, mlx->win,
 		p_img, mlx->cam.p_coords.x, mlx->cam.p_coords.y);
