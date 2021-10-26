@@ -60,18 +60,18 @@ static int	store_prevline(t_line *line_obj, char **read_str, char **line)
 
 int	get_next_line(int fd, char **line)
 {
-	t_line		line_obj;
+	t_line		l_obj;
 	static char	*read_str[OPEN_MAX];
 	char		*temp;
 
 	if (fd == -1 || !line || fd >= OPEN_MAX)
 		return (-1);
 	read_str[fd] = init_static(&read_str[fd]);
-	while (!(ft_strchr(read_str[fd], '\n')) && store_readbuff(fd, &line_obj) > 0)
+	while (!(ft_strchr(read_str[fd], '\n')) && store_readbuff(fd, &l_obj) > 0)
 	{
-		temp = ft_strjoin(read_str[fd], line_obj.line_buff);
+		temp = ft_strjoin(read_str[fd], l_obj.line_buff);
 		free(read_str[fd]);
 		read_str[fd] = temp;
 	}
-	return (store_prevline(&line_obj, &read_str[fd], line));
+	return (store_prevline(&l_obj, &read_str[fd], line));
 }

@@ -17,13 +17,13 @@
 # include <unistd.h>
 # include <limits.h>
 
-#ifndef OPEN_MAX
-# define OPEN_MAX 4096
-#endif
+# ifndef OPEN_MAX
+#  define OPEN_MAX 4096
+# endif
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 typedef struct s_list
 {
