@@ -10,7 +10,7 @@
 			"request": "launch",
 			"program": "${workspaceFolder}/so_long",
 			"args": [
-				"./maps/small.ber"
+				"./maps/big.ber"
 			],
 			"stopAtEntry": true,
 			"cwd": "${fileDirname}",

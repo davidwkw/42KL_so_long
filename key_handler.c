@@ -37,7 +37,7 @@ static void	check_p_collision(t_vars *mlx, char move)
 
 void	movement_handler(int keycode, t_vars *mlx)
 {
-	gettimeofday(&mlx->last_move_time, NULL);
+	gettimeofday(&mlx->player_state.last_move_time, NULL);
 	map_player(&mlx->ss_board, mlx->player_state.coords.x, mlx->player_state.coords.y, '0');
 	if (keycode == 'a')
 	{

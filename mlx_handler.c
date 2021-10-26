@@ -22,7 +22,7 @@ void	mlx_handler(t_map *map)
 	printf("Total Steps : %d\n", mlx.total_steps);
 	mlx.win = mlx_new_window(mlx.mlx, mlx.win_width, mlx.win_height, "So_long");
 	mlx_key_hook(mlx.win, key_handler,&mlx);
-	mlx_loop_hook(mlx.mlx, render, &mlx);
+	mlx_loop_hook(mlx.mlx, display, &mlx);
 	mlx_hook(mlx.win, 17, 0, exit_program, &mlx);
 	mlx_loop(mlx.mlx);
 }

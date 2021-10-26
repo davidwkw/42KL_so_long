@@ -12,7 +12,7 @@ static void mirror_img(void *mlx, t_data player[], t_data m_player[], int num)
 	}
 }
 
-void	cache_idle(void *mlx, t_player_img *player)
+void	cache_idle(void *mlx, t_p_imgs *player)
 {
 	unsigned int	frames;
 
@@ -28,7 +28,7 @@ void	cache_idle(void *mlx, t_player_img *player)
 	mirror_img(mlx, player->player_idle, player->m_player_idle, frames);
 }
 
-void	cache_run(void *mlx, t_player_img *player)
+void	cache_run(void *mlx, t_p_imgs *player)
 {
 	unsigned int	frames;
 

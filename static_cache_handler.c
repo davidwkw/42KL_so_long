@@ -1,6 +1,6 @@
 #include "so_long.h"
 
-void	paint_tile(t_data *img, int x, int y, t_data *asset)
+void	render_tile(t_data *img, int x, int y, t_data *asset)
 {
 	int w;
 	int	h;
@@ -23,7 +23,7 @@ void	paint_tile(t_data *img, int x, int y, t_data *asset)
 	}
 }
 
-void	paint_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
+void	render_asset_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 {
 	t_data	shadow;
 
@@ -33,12 +33,11 @@ void	paint_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 	shadow.img = mlx_get_data_addr(shadow.addr, &shadow.bpp, &shadow.size_line, &shadow.endian);
 	cache_shadow(asset, &shadow);
 	render_bg(&shadow, &mlx->img_cache.bg);
-	paint_tile(canvas, x, y, &shadow);
-	paint_tile(canvas, x, y, &mlx->img_cache.bg);
+	render_tile(canvas, x, y, &shadow);
 	mlx_destroy_image(mlx->mlx, shadow.addr);
 }
 
-void	paint_trans(t_data *canvas, int x, int y)
+static void	render_trans(t_data *canvas, int x, int y)
 {
 	int w;
 	int	h;
@@ -87,11 +86,14 @@ void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg)
 		x = -1;
 		while (mlx->map->board[y][++x])
 		{
-			paint_trans(canvas, x, y);
+			render_trans(canvas, x, y);
 			asset = get_static_asset(mlx, mlx->map->board[y][x]);
 			if (bg)
-				paint_bg(mlx, canvas, asset, x, y);
-			paint_tile(canvas, x, y, asset);
+			{
+				render_asset_bg(mlx, canvas, asset, x, y);
+				render_tile(canvas, x, y, &mlx->img_cache.bg);
+			}
+			render_tile(canvas, x, y, asset);
 		}
 	}
 }

@@ -43,8 +43,8 @@ void	cache_shadow(t_data *obj, t_data *shadow)
 		w = -1;
 		while (++w < obj->width)
 		{
-			if (src[w + (h * obj->size_line / (obj->bpp / 8))] == TRANS_INT)
-				dst[w + (h * shadow->size_line / (shadow->bpp / 8))] = TRANS_INT;
+			if (src[w + (h * (obj->size_line / (obj->bpp / 8)))] == TRANS_INT)
+				dst[w + (h * (shadow->size_line / (shadow->bpp / 8)))] = TRANS_INT;
 		}
 	}
 }

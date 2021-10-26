@@ -14,7 +14,7 @@ SRCS =	main.c \
 		key_handler.c \
 		image_selector.c \
 		offset_handler.c \
-		render.c \
+		display.c \
 		ss_handler.c \
 		ss_utils.c \
 		movement_utils.c \

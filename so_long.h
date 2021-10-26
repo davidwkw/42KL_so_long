@@ -20,8 +20,8 @@
 # define IDLE_FRAMES 8
 # define RUN_FRAMES 10
 
-# define MAX_WIN_HEIGHT 760
-# define MAX_WIN_WIDTH 1900
+# define MAX_WIN_HEIGHT 800
+# define MAX_WIN_WIDTH 1500
 
 # define ANIM_TRANSITION 230
 # define MOVE_SPEED 20
@@ -47,31 +47,31 @@ typedef struct	s_offsets
 
 typedef struct	s_data
 {
-	void		*addr;
-	char		*img;
-	int			width;
-	int			height;
-	int			bpp;
-	int			size_line;
-	int			endian;
+	void	*addr;
+	char	*img;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }	t_data;
 
 typedef struct	s_player_img
 {
-	t_data		player_idle[IDLE_FRAMES];
-	t_data		m_player_idle[IDLE_FRAMES];
-	t_data		player_run[RUN_FRAMES];
-	t_data		m_player_run[RUN_FRAMES];
-}	t_player_img;
+	t_data	player_idle[IDLE_FRAMES];
+	t_data	m_player_idle[IDLE_FRAMES];
+	t_data	player_run[RUN_FRAMES];
+	t_data	m_player_run[RUN_FRAMES];
+}	t_p_imgs;
 
 typedef struct	s_imgs 
 {
-	t_data			bg;
-	t_player_img	player;
-	t_data			coll;
-	t_data			wall;
-	t_data			exit;
-	t_data			static_assets;
+	t_data	bg;
+	t_p_imgs	player;
+	t_data	coll;
+	t_data	wall;
+	t_data	exit;
+	t_data	static_assets;
 }	t_imgs;
 
 typedef struct	s_coords
@@ -86,11 +86,13 @@ typedef struct	s_player_state
 	unsigned int	direction : 1;
 	t_coords		coords;
 	t_offsets		offsets;
+	struct timeval	last_move_time;
 }	t_p_state;
 
 typedef struct	s_cam
 {
-	t_coords	coords;
+	t_coords	w_coords;
+	t_coords	p_coords;
 	int			max_x_offset;
 	int			max_y_offset;
 }	t_cam;
@@ -117,7 +119,6 @@ typedef struct	s_vars
 	t_imgs			img_cache;
 	t_p_state		player_state;
 	t_map			*map;
-	struct timeval	last_move_time;
 	t_cam			cam;
 	unsigned int	total_steps;
 	char			**ss_board;
@@ -136,7 +137,7 @@ void	parse_map(char *filename, t_map *map);
 
 // initializers.c
 void	init_images(t_vars *mlx, void *p_mlx, t_imgs *cache);
-void	init_player_state(t_p_state *player_state, t_map *map, t_player_img *player);
+void	init_player_state(t_p_state *player_state, t_map *map, t_p_imgs *player);
 void	init_cam(t_vars *mlx, t_cam *cam, t_data *canvas);
 
 // mlx_handler.c
@@ -146,22 +147,19 @@ void	mlx_handler(t_map *map);
 void	render_bg(t_data *img, t_data *bg);
 
 // render.c
-int		render(t_vars *mlx);
+int		display(t_vars *mlx);
 
 // player_handler.c
-void	render_idle_player(t_vars *mlx, int fps);
-void	render_run_player(t_vars *mlx, int fps);
-
-// dynamic_asset_handler.c
-void	render_collectibles(t_vars *mlx);
+void	*loop_idle_player(t_p_state *player_state, t_p_imgs *player, int fps);
+void	*loop_run_player(t_p_state *player_state, t_p_imgs *player, int fps);
 
 // static_cache_handler.c
 void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg);
-void	paint_tile(t_data *img, int x, int y, t_data *asset);
+void	render_tile(t_data *img, int x, int y, t_data *asset);
 
 // player_cache_handler.c
-void	cache_idle(void *mlx, t_player_img *player);
-void	cache_run(void *mlx, t_player_img *player);
+void	cache_idle(void *mlx, t_p_imgs *player);
+void	cache_run(void *mlx, t_p_imgs *player);
 
 // cache_utils.c
 void	cache_image(void *mlx, t_data *img, char *path);
@@ -179,8 +177,8 @@ void	display_info(t_vars *mlx);
 int		abs(int num);
 
 // image_selector.c
-void	*select_idle_img(t_vars *mlx, unsigned int state);
-void	*select_run_img(t_vars *mlx, unsigned int state);
+void	*select_idle_img(t_p_imgs *player, t_p_state *player_state, int state);
+void	*select_run_img(t_p_imgs *player, t_p_state *player_state, int state);
 
 // offset_handler.c
 void	calc_offsets(t_data *img, t_offsets *offset);

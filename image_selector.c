@@ -1,17 +1,17 @@
 #include "so_long.h"
 
-void	*select_idle_img(t_vars *mlx, unsigned int state)
+void	*select_idle_img(t_p_imgs *player, t_p_state *player_state, int state)
 {
-	if (mlx->player_state.direction == LEFT)
-		return (mlx->img_cache.player.m_player_idle[state].addr);
+	if (player_state->direction == LEFT)
+		return (player->m_player_idle[state].addr);
 	else
-		return (mlx->img_cache.player.player_idle[state].addr);
+		return (player->player_idle[state].addr);
 }
 
-void	*select_run_img(t_vars *mlx, unsigned int state)
+void	*select_run_img(t_p_imgs *player, t_p_state *player_state, int state)
 {
-	if (mlx->player_state.direction == LEFT)
-		return (mlx->img_cache.player.m_player_run[state].addr);
+	if (player_state->direction == LEFT)
+		return (player->m_player_run[state].addr);
 	else
-		return (mlx->img_cache.player.player_run[state].addr);
+		return (player->player_run[state].addr);
 }
