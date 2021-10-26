@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kwang <kwang@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/26 17:04:50 by kwang             #+#    #+#             */
+/*   Updated: 2021/10/26 17:04:59 by kwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SO_LONG_H
 
@@ -8,8 +19,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <sys/time.h>
-# include "./mlx_linux/mlx.h"
-# include "./libft/libft.h"
+# include "mlx.h"
+# include "../libft/libft.h"
 
 # define STATIC_OFFSET 100
 
@@ -61,7 +72,7 @@ typedef struct	s_player_img
 	t_data	m_player_run[RUN_FRAMES];
 }	t_p_imgs;
 
-typedef struct	s_imgs 
+typedef struct	s_imgs
 {
 	t_data	bg;
 	t_p_imgs	player;

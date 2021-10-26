@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_to_arr.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kwang <kwang@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 16:43:24 by kwang             #+#    #+#             */
-/*   Updated: 2021/10/26 16:43:30 by kwang            ###   ########.fr       */
+/*   Created: 2021/10/26 17:04:01 by kwang             #+#    #+#             */
+/*   Updated: 2021/10/26 17:04:03 by kwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_lst_to_arr(t_list *lst)
+int	main(int argc, char **argv)
 {
-	void	**arr;
-	int		i;
-	int		count;
+	t_map	map;
 
-	count = ft_lstsize(lst);
-	arr = malloc(sizeof(void *) * (count + 1));
-	i = 0;
-	while (lst)
-	{
-		arr[i++] = lst->content;
-		lst = lst->next;
-	}
-	arr[i] = NULL;
-	return (arr);
+	if (argc != 2)
+		printf("Usage: %s [<MAP_NAME>.ber]\n", argv[0]);
+	parse_map(argv[1], &map);
+	mlx_handler(&map);
+	return (0);
 }

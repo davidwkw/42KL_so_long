@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kwang <kwang@student.42kl.edu.my>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/26 17:04:23 by kwang             #+#    #+#             */
+/*   Updated: 2021/10/26 17:04:24 by kwang            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	calc_w_cam(int win_width, int win_height, t_cam *cam)
 {
 	int	w_x_offset;
 	int	w_y_offset;
-	
+
 	w_x_offset = 0 - cam->p_coords.x - (win_width / 2);
 	w_y_offset = 0 - cam->p_coords.y - (win_height / 2);
 	if (abs(w_x_offset) > win_width && (abs(w_x_offset) - win_width) <= cam->max_x_offset)

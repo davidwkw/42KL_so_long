@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_to_arr.c                                    :+:      :+:    :+:   */
+/*   collection_handler.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kwang <kwang@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 16:43:24 by kwang             #+#    #+#             */
-/*   Updated: 2021/10/26 16:43:30 by kwang            ###   ########.fr       */
+/*   Created: 2021/10/26 17:04:27 by kwang             #+#    #+#             */
+/*   Updated: 2021/10/26 17:04:29 by kwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_lst_to_arr(t_list *lst)
+void	collection_handler(t_vars *mlx, int x, int y)
 {
-	void	**arr;
-	int		i;
-	int		count;
+	int	coll_x;
+	int	coll_y;
 
-	count = ft_lstsize(lst);
-	arr = malloc(sizeof(void *) * (count + 1));
-	i = 0;
-	while (lst)
-	{
-		arr[i++] = lst->content;
-		lst = lst->next;
-	}
-	arr[i] = NULL;
-	return (arr);
+	locate_p_collision(&mlx->ss_board, x, y, &coll_x, &coll_y, 'C');
+	map_tile(&mlx->ss_board, (coll_x / 100) * 100, (coll_y / 100) * 100, '0');
+	render_tile(&mlx->img_cache.static_assets, coll_x / 100, coll_y / 100, &mlx->img_cache.bg);
+	mlx->map->collectible--;
 }

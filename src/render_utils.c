@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_to_arr.c                                    :+:      :+:    :+:   */
+/*   render_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kwang <kwang@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/26 16:43:24 by kwang             #+#    #+#             */
-/*   Updated: 2021/10/26 16:43:30 by kwang            ###   ########.fr       */
+/*   Created: 2021/10/26 17:03:39 by kwang             #+#    #+#             */
+/*   Updated: 2021/10/26 17:03:40 by kwang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "so_long.h"
 
-void	*ft_lst_to_arr(t_list *lst)
+void	render_bg(t_data *img, t_data *bg)
 {
-	void	**arr;
-	int		i;
-	int		count;
+	int w;
+	int	h;
+	int *src;
+	int	*dst;
 
-	count = ft_lstsize(lst);
-	arr = malloc(sizeof(void *) * (count + 1));
-	i = 0;
-	while (lst)
+	src = (int *)bg->img;
+	dst = (int *)img->img;
+	h = -1;
+	while (++h < img->height)
 	{
-		arr[i++] = lst->content;
-		lst = lst->next;
+		w = -1;
+		while (++w < img->width)
+		{
+			if (dst[(h * img->size_line / (img->bpp / 8)) + w] == TRANS_INT)
+				dst[(h * (img->size_line / (img->bpp / 8))) + w] = src[(h * (bg->size_line / (bg->bpp / 8))) + w];
+		}
 	}
-	arr[i] = NULL;
-	return (arr);
 }
