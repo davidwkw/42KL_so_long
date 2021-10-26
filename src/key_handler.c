@@ -50,7 +50,8 @@ static void	check_p_collision(t_vars *mlx, char move)
 void	movement_handler(int keycode, t_vars *mlx)
 {
 	gettimeofday(&mlx->player_state.last_move_time, NULL);
-	map_player(&mlx->ss_board, mlx->player_state.coords.x, mlx->player_state.coords.y, '0');
+	map_player(&mlx->ss_board, mlx->player_state.coords.x,
+		mlx->player_state.coords.y, '0');
 	if (keycode == 'a')
 	{
 		mlx->player_state.direction = LEFT;
@@ -68,7 +69,8 @@ void	movement_handler(int keycode, t_vars *mlx)
 	mlx->total_steps++;
 	mlx->player_state.state++;
 	check_p_collision(mlx, keycode);
-	map_player(&mlx->ss_board, mlx->player_state.coords.x, mlx->player_state.coords.y, 'P');
+	map_player(&mlx->ss_board, mlx->player_state.coords.x,
+		mlx->player_state.coords.y, 'P');
 	printf("Total steps : %d\n", mlx->total_steps);
 }
 
