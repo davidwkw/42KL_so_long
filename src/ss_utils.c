@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-static void offset_p_top(t_coords *coords, char ***ss_board)
+static void	offset_p_top(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
@@ -30,7 +30,7 @@ static void offset_p_top(t_coords *coords, char ***ss_board)
 	}
 }
 
-static void offset_p_left(t_coords *coords, char ***ss_board)
+static void	offset_p_left(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
@@ -48,7 +48,7 @@ static void offset_p_left(t_coords *coords, char ***ss_board)
 	}
 }
 
-static void offset_p_right(t_coords *coords, char ***ss_board)
+static void	offset_p_right(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
@@ -66,7 +66,7 @@ static void offset_p_right(t_coords *coords, char ***ss_board)
 	}
 }
 
-static void offset_p_bottom(t_coords *coords, char ***ss_board)
+static void	offset_p_bottom(t_coords *coords, char ***ss_board)
 {
 	int	x;
 	int	y;
@@ -84,7 +84,7 @@ static void offset_p_bottom(t_coords *coords, char ***ss_board)
 	}
 }
 
-void super_sample_player(t_vars *mlx)
+void	super_sample_player(t_vars *mlx)
 {
 	offset_p_top(&mlx->player_state.coords, &mlx->ss_board);
 	offset_p_left(&mlx->player_state.coords, &mlx->ss_board);
