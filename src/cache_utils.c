@@ -16,7 +16,7 @@ void	cache_image(void *mlx, t_data *img, char *path)
 {
 	img->addr = mlx_xpm_file_to_image(mlx, path, &img->width, &img->height);
 	img->img = mlx_get_data_addr(img->addr, &img->bpp,
-		&img->size_line, &img->endian);
+									&img->size_line, &img->endian);
 }
 
 void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror)
