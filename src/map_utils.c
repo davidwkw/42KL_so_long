@@ -42,7 +42,7 @@ void	check_tb_border(char *line)
 	while (i < ft_strlen(line))
 	{
 		if (line[i] != '1')
-			error_handler("Horizontal border not intact", "check_tb_border", EIO);
+			error_handler("Invalid horizontal border", "check_tb_border", EIO);
 		i++;
 	}
 }
