@@ -44,7 +44,7 @@ void	render_asset_bg(t_vars *mlx, t_data *canvas, t_data *asset, int x, int y)
 	shadow.width = asset->width;
 	shadow.height = asset->height;
 	shadow.img = mlx_get_data_addr(shadow.addr,
-		&shadow.bpp, &shadow.size_line, &shadow.endian);
+			&shadow.bpp, &shadow.size_line, &shadow.endian);
 	cache_shadow(asset, &shadow);
 	render_bg(&shadow, &mlx->img_cache.bg);
 	render_tile(canvas, x, y, &shadow);
@@ -66,8 +66,10 @@ static void	render_trans(t_data *canvas, int x, int y)
 		w = -1;
 		while (++w < STATIC_OFFSET)
 		{
-			if (img[(x + w) + ((y + h) * (canvas->size_line / (canvas->bpp / 8)))] == 0)
-				img[(x + w) + ((y + h) * (canvas->size_line / (canvas->bpp / 8)))] = TRANS_P;
+			if (img[(x + w) + ((y + h)
+				* (canvas->size_line / (canvas->bpp / 8)))] == 0)
+				img[(x + w) + ((y + h)
+				* (canvas->size_line / (canvas->bpp / 8)))] = TRANS_P;
 		}
 	}
 }
