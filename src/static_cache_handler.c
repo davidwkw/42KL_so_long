@@ -67,9 +67,9 @@ static void	render_trans(t_data *canvas, int x, int y)
 		while (++w < STATIC_OFFSET)
 		{
 			if (img[(x + w) + ((y + h)
-				* (canvas->size_line / (canvas->bpp / 8)))] == 0)
+					* (canvas->size_line / (canvas->bpp / 8)))] == 0)
 				img[(x + w) + ((y + h)
-				* (canvas->size_line / (canvas->bpp / 8)))] = TRANS_P;
+					* (canvas->size_line / (canvas->bpp / 8)))] = TRANS_P;
 		}
 	}
 }
@@ -93,10 +93,11 @@ void	cache_static_assets(t_vars *mlx, t_data *canvas, int bg)
 	t_data	*asset;
 
 	canvas->addr = mlx_new_image(mlx->mlx, mlx->map->size_x * STATIC_OFFSET,
-		mlx->map->size_y * STATIC_OFFSET);
+			mlx->map->size_y * STATIC_OFFSET);
 	canvas->width = mlx->map->size_x * STATIC_OFFSET;
 	canvas->height = mlx->map->size_y * STATIC_OFFSET;
-	canvas->img = mlx_get_data_addr(canvas->addr, &canvas->bpp, &canvas->size_line, &canvas->endian);
+	canvas->img = mlx_get_data_addr(canvas->addr, &canvas->bpp,
+			&canvas->size_line, &canvas->endian);
 	y = -1;
 	while (mlx->map->board[++y])
 	{
