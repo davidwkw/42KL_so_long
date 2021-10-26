@@ -25,12 +25,12 @@ static void	set_top_bottom(int *img_data, t_data *img, t_offsets *offset)
 		while (++w < img->width)
 		{
 			value = img_data[(h * img->size_line / (img->bpp / 8)) + w];
-			if (!offset->top && value != TRANS_INT)
+			if (!offset->top && value != TRANS_P)
 			{
 				offset->top = h;
 				offset->bottom = h;
 			}
-			else if (value != TRANS_INT && h > offset->bottom)
+			else if (value != TRANS_P && h > offset->bottom)
 				offset->bottom = h;
 		}
 	}
@@ -49,12 +49,12 @@ static void	set_left_right(int *img_data, t_data *img, t_offsets *offset)
 		while (++h < img->height)
 		{
 			value = img_data[(h * img->size_line / (img->bpp / 8)) + w];
-			if (!offset->left && value != TRANS_INT)
+			if (!offset->left && value != TRANS_P)
 			{
 				offset->left = w;
 				offset->right = w;
 			}
-			else if (value != TRANS_INT && w > offset->right)
+			else if (value != TRANS_P && w > offset->right)
 				offset->right = w;
 		}
 	}

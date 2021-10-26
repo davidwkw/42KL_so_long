@@ -34,7 +34,7 @@
 # define ANIM_TRANSITION 230
 # define MOVE_SPEED 20
 
-# define TRANS_INT -16777216
+# define TRANS_P -16777216
 
 # define P_IMG_WIDTH 100
 # define P_IMG_HEIGHT 55

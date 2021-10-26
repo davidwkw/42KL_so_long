@@ -59,7 +59,7 @@ static void	super_sample_static(t_vars *mlx)
 		while (++w < img.width)
 		{
 			pixel_color = src[w + (h * (img.size_line / (img.bpp / 8)))];
-			if (pixel_color == TRANS_INT)
+			if (pixel_color == TRANS_P)
 				mlx->ss_board[h][w] = '0';
 		}
 	}
