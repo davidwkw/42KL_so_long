@@ -40,7 +40,7 @@ void	cache_mirror_image(void *mlx, t_data *img, t_data *mirror)
 		while (++w < img->width)
 			dst[w + (h * (mirror->size_line / (mirror->bpp / 8)))]
 				= src[(img->size_line / (img->bpp / 8)) - 1
-				+ (h * (img->size_line / (img->bpp / 8))) - w];
+			+ (h * (img->size_line / (img->bpp / 8))) - w];
 	}
 }
 
