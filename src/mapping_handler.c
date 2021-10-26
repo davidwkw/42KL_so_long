@@ -14,10 +14,10 @@
 
 void	map_player(char ***ss_board, int p_x, int p_y, char c)
 {
-	int w;
-	int h;
-	int x;
-	int y;
+	int	w;
+	int	h;
+	int	x;
+	int	y;
 
 	w = p_x + P_WIDTH;
 	h = p_y + P_HEIGHT;
