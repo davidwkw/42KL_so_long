@@ -39,7 +39,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror -I$(INCLUDES) -I/usr/include/ -Imlx_linux
 
-MLXFLAGS = -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -lbsd
+MLXFLAGS = -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 
 INCLUDES = includes
 

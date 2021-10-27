@@ -21,7 +21,7 @@ static void	is_valid_map(t_map *map)
 	y = 0;
 	while (map->board[y])
 	{
-		if (y == 0 || y == map->size_y - 1)
+		if (y == 0 || y == map->size_y)
 			check_tb_border(map->board[y]);
 		if (map->size_x != ft_strlen(map->board[y]))
 			error_handler("Invalid map shape", "is_valid_map", EIO);
