@@ -16,12 +16,11 @@ int	main(int argc, char **argv)
 {
 	t_map	map;
 
-	if (argc != 2)
-		printf("Usage: %s [<MAP_NAME>.ber]\n", argv[0]);
-	else
+	if (argc == 2)
 	{
 		parse_map(argv[1], &map);
 		mlx_handler(&map);
 	}
+	printf("Usage: %s [<MAP_NAME>.ber]\n", argv[0]);
 	return (0);
 }
